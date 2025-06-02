@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block titulek_stranky %}
+    Změň si přezdívku
+{% endblock %}
+
+{% block obsah_stranky %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ formular.as_p }}
+    <button type="submit">Nastavit</button>
+</form>
+
+{% endblock %}

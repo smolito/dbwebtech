@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Seznam produktů</title>
+</head>
+<body>
+
+    {% extends 'base.html' %}
+
+    {% block content %}
+        <h2>Seznam produktů</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Název</th>
+                    <th>Popis</th>
+                    <th>Cena</th>
+                    <th>Datum přidání</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produkt in produkty %}
+                <tr>
+                    <td>{{ produkt.nazev }}</td>
+                    <td>{{ produkt.popis }}</td>
+                    <td>{{ produkt.cena }} Kč</td>
+                    <td>{{ produkt.datum_pridani|date:"d.m.Y H:i" }}</td>
+                    <td>
+                        <a href="%{ url "produkt_smazat" produkt.id %}" class="btn btn-danger">Smazat {{produkt.nazev}}</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">Žádné produkty nebyly nalezeny.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
+
+</body>
+</html>
